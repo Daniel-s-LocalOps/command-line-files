@@ -15,7 +15,7 @@ fn get_filename_from_enviroment() -> String {
     const FIRST_ARGUEMENT: usize = 1;
 
     env::args().nth(FIRST_ARGUEMENT).unwrap_or_else(|| {
-        eprintln!("An error occured. Please enter a file name");
+        eprintln!("Please enter a file name");
         std::process::exit(1);
     })
 }
@@ -32,12 +32,12 @@ fn append_to_file(file_name: &str, append_text: &str) {
         .append(true)
         .open(file_name)
         .unwrap_or_else(|e| {
-            eprintln!("An error occured: {}", e);
+            eprintln!("An error occured while writing file: {}", e);
             std::process::exit(1);
         });
 
     file.write(append_text.as_bytes()).unwrap_or_else(|e| {
-        eprintln!("An error occured: {}", e);
+        eprintln!("An error occured appending to file: {}", e);
         std::process::exit(1);
     });
 }
